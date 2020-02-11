@@ -37,7 +37,7 @@ const App = () => {
   }
   `;
 
-    fetch("/", {
+    fetch("../server.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: mutation })
