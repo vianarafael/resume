@@ -12,6 +12,18 @@ const App = () => {
     console.log(basic);
   };
 
+  const show = () => {
+    fetch("http://localhost:4000", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: "{ basic { name day month year gender } }"
+      })
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
+  };
+
   const save = () => {
     const mutation = `
     mutation {
@@ -25,7 +37,7 @@ const App = () => {
   }
   `;
 
-    fetch("http://localhost:4000", {
+    fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: mutation })
@@ -40,6 +52,7 @@ const App = () => {
     <div className="App">
       <div className="resume">
         <button onClick={save}>Send to server</button>
+        <button onClick={show}>Show Me what you've got</button>
         <Header onAddBasic={addBasic} />
         <Contact />
       </div>

@@ -7,8 +7,6 @@ const knex = require("knex")({
   searchPath: ["knex", "public"]
 });
 
-// const port = process.env.PORT || 4000;
-
 const typeDefs = gql`
   type Basic {
     name: String
