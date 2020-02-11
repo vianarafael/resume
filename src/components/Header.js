@@ -7,7 +7,7 @@ const headerSideBarVisible = () => {
   node.classList.toggle("invisible");
 };
 
-const Header = () => {
+const Header = props => {
   let [name, setName] = useState("");
 
   let [year, setYear] = useState("");
@@ -195,6 +195,14 @@ const Header = () => {
             <option name="Masculino">Masculino</option>
             <option name="Feminino">Feminino</option>
           </select>
+          <button
+            onClick={e => {
+              e.preventDefault();
+              props.onAddBasic({ name, day, month, year, gender });
+            }}
+          >
+            Submit
+          </button>
         </form>
       </div>
     </React.Fragment>

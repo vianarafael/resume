@@ -5,18 +5,43 @@ import Header from "./components/Header";
 import Contact from "./components/Contact";
 
 const App = () => {
-  let [postal, setPostal] = useState("");
-  let [add, setAdd] = useState("");
+  let [basic, setBasic] = useState({});
+
+  const addBasic = basicObj => {
+    setBasic((basic = basicObj));
+    console.log(basic);
+  };
+
+  const save = () => {
+    const mutation = `
+    mutation {
+    addInfo(name: "${basic.name}", day: "${basic.day}", month: "${basic.month}", year: "${basic.year}", gender: "${basic.gender}") {
+      name
+      day
+      month
+      year
+      gender
+    }
+  }
+  `;
+
+    fetch("http://localhost:4000", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: mutation })
+    })
+      .then(res => res.json())
+      .then(() => {
+        console.log("sent");
+      });
+  };
+
   return (
     <div className="App">
       <div className="resume">
-        <Header />
-        <Contact
-          onClick={e => {
-            e.preventDefauld();
-            console.log(e);
-          }}
-        />
+        <button onClick={save}>Send to server</button>
+        <Header onAddBasic={addBasic} />
+        <Contact />
       </div>
     </div>
   );
