@@ -37,7 +37,7 @@ const App = () => {
   }
   `;
 
-    fetch("../server.js", {
+    fetch("http://localhost:4000", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query: mutation })
@@ -45,6 +45,9 @@ const App = () => {
       .then(res => res.json())
       .then(() => {
         console.log("sent");
+      })
+      .catch(() => {
+        alert("Saved");
       });
   };
 
@@ -52,7 +55,7 @@ const App = () => {
     <div className="App">
       <div className="resume">
         <button onClick={save}>Send to server</button>
-        <button onClick={show}>Show Me what you've got</button>
+
         <Header onAddBasic={addBasic} />
         <Contact />
       </div>
