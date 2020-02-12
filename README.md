@@ -4,6 +4,8 @@ This was created during my time as a student at Code Chrysalis.
 
 A Japanese Resume Builder for Portuguese speakers
 
+http://resume-builder-staging.herokuapp.com/
+
 ## Available Scripts
 
 In the project directory, you can run:
